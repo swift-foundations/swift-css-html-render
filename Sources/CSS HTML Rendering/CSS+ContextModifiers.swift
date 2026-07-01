@@ -6,7 +6,7 @@
 //
 
 public import CSS_Standard
-public import HTML_Renderable
+public import HTML_Rendering_Core
 
 // MARK: - Media Query Modifiers
 

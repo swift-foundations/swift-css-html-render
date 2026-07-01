@@ -6,8 +6,8 @@
 //  For dark mode support, import swift-html which extends with DarkModeColor methods.
 //
 
-public import CSS_Standard
-public import HTML_Renderable
+import CSS_Standard
+import HTML_Rendering_Core
 
 // extension CSS {
 //    /// Sets the text color using a single Color.Value.

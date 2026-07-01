@@ -1,9 +1,10 @@
-// swift-tools-version: 6.2
+// swift-tools-version: 6.3.1
 
 import PackageDescription
 
 extension String {
     static let cssHTMLRendering: Self = "CSS HTML Rendering"
+    var tests: Self { self + " Tests" }
 }
 
 extension Target.Dependency {
@@ -15,24 +16,33 @@ extension Target.Dependency {
         .product(name: "CSS Standard", package: "swift-css-standard")
     }
     static var layout: Self {
-        .product(name: "Layout", package: "swift-standards")
+        .product(name: "Layout Primitives", package: "swift-layout-primitives")
     }
-    static var htmlRenderable: Self {
-        .product(name: "HTML Renderable", package: "swift-html-rendering")
+    static var htmlRenderingCore: Self {
+        .product(name: "HTML Rendering Core", package: "swift-html-render")
     }
     static var htmlRendering: Self {
-        .product(name: "HTML Rendering", package: "swift-html-rendering")
+        .product(name: "HTML Rendering", package: "swift-html-render")
     }
-    static var htmlRenderableTestSupport: Self {
-        .product(name: "HTML Rendering TestSupport", package: "swift-html-rendering")
+    static var sharedPrimitive: Self {
+        .product(name: "Shared Primitive", package: "swift-shared-primitives")
     }
-    static var orderedCollections: Self {
-        .product(name: "OrderedCollections", package: "swift-collections")
+    static var hashIndexedPrimitive: Self {
+        .product(name: "Hash Indexed Primitive", package: "swift-hash-table-primitives")
+    }
+    static var hashPrimitives: Self {
+        .product(name: "Hash Primitives", package: "swift-hash-primitives")
+    }
+    static var columnPrimitives: Self {
+        .product(name: "Column Primitives", package: "swift-column-primitives")
+    }
+    static var bufferLinearPrimitive: Self {
+        .product(name: "Buffer Linear Primitive", package: "swift-buffer-linear-primitives")
     }
 }
 
 let package = Package(
-    name: "swift-css-html-rendering",
+    name: "swift-css-html-render",
     platforms: [
         .macOS(.v26),
         .iOS(.v26),
@@ -42,12 +52,18 @@ let package = Package(
     ],
     products: [
         .library(name: .cssHTMLRendering, targets: [.cssHTMLRendering]),
+        .library(name: "CSS HTML Rendering Test Support", targets: ["CSS HTML Rendering Test Support"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/apple/swift-collections.git", from: "1.1.0"),
-        .package(url: "https://github.com/coenttb/swift-html-rendering", from: "0.1.15"),
-        .package(url: "https://github.com/swift-standards/swift-css-standard", from: "0.1.7"),
-        .package(url: "https://github.com/swift-standards/swift-standards", from: "0.20.1"),
+        .package(url: "https://github.com/swift-foundations/swift-html-render.git", branch: "main"),
+        .package(url: "https://github.com/swift-standards/swift-css-standard.git", branch: "main"),
+        .package(url: "https://github.com/swift-primitives/swift-layout-primitives.git", branch: "main"),
+        .package(url: "https://github.com/swift-primitives/swift-dictionary-ordered-primitives.git", branch: "main"),
+        .package(url: "https://github.com/swift-primitives/swift-shared-primitives.git", branch: "main"),
+        .package(url: "https://github.com/swift-primitives/swift-hash-table-primitives.git", branch: "main"),
+        .package(url: "https://github.com/swift-primitives/swift-hash-primitives.git", branch: "main"),
+        .package(url: "https://github.com/swift-primitives/swift-column-primitives.git", branch: "main"),
+        .package(url: "https://github.com/swift-primitives/swift-buffer-linear-primitives.git", branch: "main"),
     ],
     targets: [
         .target(
@@ -56,29 +72,49 @@ let package = Package(
                 .htmlRendering,
                 .cssStandard,
                 .layout,
-                .orderedCollections,
+                .product(name: "Dictionary Ordered Primitives", package: "swift-dictionary-ordered-primitives"),
+                .sharedPrimitive,
+                .hashIndexedPrimitive,
+                .hashPrimitives,
+                .columnPrimitives,
+                .bufferLinearPrimitive,
             ]
+        ),
+        .target(
+            name: "CSS HTML Rendering Test Support",
+            dependencies: [
+                .cssHTMLRendering,
+                .cssStandard,
+                .product(name: "HTML Rendering Core Test Support", package: "swift-html-render"),
+            ],
+            path: "Tests/Support"
         ),
         .testTarget(
             name: .cssHTMLRendering.tests,
             dependencies: [
-                .cssHTMLRendering,
-                .htmlRenderableTestSupport
-            ]
+                "CSS HTML Rendering Test Support",
+            ],
+            path: "Tests/CSS HTML Rendering Tests"
         ),
     ],
     swiftLanguageModes: [.v6]
 )
 
-extension String {
-    var tests: Self { self + " Tests" }
-}
-
-for target in package.targets where ![.system, .binary, .plugin].contains(target.type) {
-    let existing = target.swiftSettings ?? []
-    target.swiftSettings = existing + [
+for target in package.targets where ![.system, .binary, .plugin, .macro].contains(target.type) {
+    let ecosystem: [SwiftSetting] = [
+        .strictMemorySafety(),
         .enableUpcomingFeature("ExistentialAny"),
         .enableUpcomingFeature("InternalImportsByDefault"),
-        .enableUpcomingFeature("MemberImportsByDefault")
+        .enableUpcomingFeature("MemberImportVisibility"),
+        .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
+        .enableExperimentalFeature("LifetimeDependence"),
+        .enableExperimentalFeature("Lifetimes"),
+        .enableExperimentalFeature("SuppressedAssociatedTypes"),
+        .enableUpcomingFeature("InferIsolatedConformances"),
+        .enableUpcomingFeature("LifetimeDependence"),
     ]
+
+    let package: [SwiftSetting] = []
+
+    target.swiftSettings = (target.swiftSettings ?? []) + ecosystem + package
 }

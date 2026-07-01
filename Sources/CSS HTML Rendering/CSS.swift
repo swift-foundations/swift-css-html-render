@@ -11,7 +11,7 @@
 //
 
 public import CSS_Standard
-public import HTML_Renderable
+public import HTML_Rendering_Core
 
 /// Provides namespaced access to CSS properties for better discoverability.
 ///
@@ -97,15 +97,15 @@ public enum CSS {
         @inlinable
         public static func buildBlock<each Content>(
             _ content: repeat each Content
-        ) -> _Tuple<repeat each Content> {
-            _Tuple(repeat each content)
+        ) -> Render._Tuple<repeat each Content> {
+            Render._Tuple(repeat each content)
         }
 
         // Handle if-else: first branch (same as HTML.Builder)
         @inlinable
         public static func buildEither<First, Second>(
             first component: First
-        ) -> _Conditional<First, Second> {
+        ) -> Render.Conditional<First, Second> {
             .first(component)
         }
 
@@ -113,7 +113,7 @@ public enum CSS {
         @inlinable
         public static func buildEither<First, Second>(
             second component: Second
-        ) -> _Conditional<First, Second> {
+        ) -> Render.Conditional<First, Second> {
             .second(component)
         }
 
@@ -125,8 +125,8 @@ public enum CSS {
 
         // Handle arrays from for loops (same as HTML.Builder)
         @inlinable
-        public static func buildArray<Element>(_ components: [Element]) -> _Array<Element> {
-            _Array(components)
+        public static func buildArray<Element>(_ components: [Element]) -> [Element] {
+            components
         }
 
         // The key difference: wrap the final result in HTML.CSS

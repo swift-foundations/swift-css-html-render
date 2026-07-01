@@ -6,7 +6,7 @@
 //
 
 public import CSS_Standard
-public import HTML_Renderable
+public import HTML_Rendering_Core
 
 /// Extension to convert W3C CSS Media to HTML.AtRule.Media
 extension HTML.AtRule.Media {

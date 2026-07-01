@@ -7,7 +7,7 @@
 //  builder constructs by automatically type-erasing at the builder boundary.
 //
 
-public import HTML_Renderable
+public import HTML_Rendering_Core
 
 // extension HTML.Builder {
 //    /// Converts a CSS-wrapped view to AnyView when entering a builder context.

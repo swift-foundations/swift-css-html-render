@@ -3,7 +3,7 @@
 //  swift-css-html-rendering
 //
 
-public import CSS_Standard
+import CSS_Standard
 public import HTML_Rendering
 
 public struct Spacer: HTML.View {

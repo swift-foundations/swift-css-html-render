@@ -7,14 +7,14 @@ public import HTML_Rendering
 
 public struct HTMLForEach<Content: HTML.View>: HTML.View {
     /// The array of HTML content generated from the collection.
-    let content: _Array<Content>
+    let content: [Content]
 
     /// Creates a new HTML component that generates content for each element in a collection.
     ///
     /// - Parameters:
     ///   - data: The collection to iterate over.
     ///   - content: A closure that transforms each element of the collection into HTML content.
-    public init<Data: Sequence>(
+    public init<Data: Swift.Sequence>(
         _ data: Data,
         @HTML.Builder content: (Data.Element) -> Content
     ) {
