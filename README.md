@@ -78,7 +78,7 @@ The module name is `CSS_HTML_Rendering` once imported. Property values come from
 ## Community
 
 <!-- BEGIN: discussion -->
-*Discussion thread will be created at first public flip.*
+*Discussion thread will be created at first public release.*
 <!-- END: discussion -->
 
 ## License
