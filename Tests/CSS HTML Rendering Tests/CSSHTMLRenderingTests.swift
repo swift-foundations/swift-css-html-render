@@ -3,9 +3,10 @@
 //  swift-css-html-rendering
 //
 
-import Testing
-@testable import CSS_HTML_Rendering
 import CSS_HTML_Rendering_Test_Support
+import Testing
+
+@testable import CSS_HTML_Rendering
 
 // MARK: - Unit Tests
 

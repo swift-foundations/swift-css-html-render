@@ -3,15 +3,15 @@
 //  swift-css-html-rendering
 //
 
+public import Buffer_Linear_Primitive
 public import CSS_Standard
-public import HTML_Rendering
-public import Layout_Primitives
+public import Column_Primitives
 public import Dictionary_Ordered_Primitives
-public import Ownership_Shared_Primitive
+public import HTML_Rendering
 public import Hash_Indexed_Primitive
 public import Hash_Primitives
-public import Column_Primitives
-public import Buffer_Linear_Primitive
+public import Layout_Primitives
+public import Ownership_Shared_Primitive
 
 /// Phantom type for CSS coordinate space
 public enum CSSSpace {}
@@ -63,11 +63,12 @@ public struct LazyVGrid<Content: HTML.View>: HTML.View {
     }
 
     public var body: some HTML.View {
-        let colValue: Columns = if !columns.isEmpty {
-            columns.value(at: .zero)
-        } else {
-            .count(1)
-        }
+        let colValue: Columns =
+            if !columns.isEmpty {
+                columns.value(at: .zero)
+            } else {
+                .count(1)
+            }
         let columnGap = horizontalSpacing == .zero ? .zero : horizontalSpacing
         let rowGap = verticalSpacing == .zero ? .zero : verticalSpacing
         let gridCols = colValue.cssGridTemplateColumns
