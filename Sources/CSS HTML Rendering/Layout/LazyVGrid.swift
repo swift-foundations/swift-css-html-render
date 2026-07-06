@@ -7,7 +7,7 @@ public import CSS_Standard
 public import HTML_Rendering
 public import Layout_Primitives
 public import Dictionary_Ordered_Primitives
-public import Shared_Primitive
+public import Ownership_Shared_Primitive
 public import Hash_Indexed_Primitive
 public import Hash_Primitives
 public import Column_Primitives
@@ -23,9 +23,12 @@ public struct LazyVGrid<Content: HTML.View>: HTML.View {
     /// The responsive column configuration: a value-semantic (copy-on-write)
     /// insertion-ordered map from an optional media-query breakpoint (`nil` = the
     /// default, no media query) to its `Columns`, on the `Shared` column.
-    public typealias Breakpoints = Dictionary<
-        Shared<Hash.Entry<CSS_Standard.Media?, Columns>, Hash.Indexed<Column_Primitives.Column.Heap<Hash.Entry<CSS_Standard.Media?, Columns>>>>
-    >.Ordered
+    public typealias Breakpoints = __DictionaryOrdered<
+        Ownership.Shared<
+            Hash.Entry<CSS_Standard.Media?, Columns>,
+            Hash.Indexed<Column_Primitives.Column.Heap<Hash.Entry<CSS_Standard.Media?, Columns>>>
+        >
+    >
 
     public let columns: Breakpoints
     public let content: Content
