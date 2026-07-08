@@ -15,29 +15,11 @@ extension Target.Dependency {
     static var cssStandard: Self {
         .product(name: "CSS Standard", package: "swift-css-standard")
     }
-    static var layout: Self {
-        .product(name: "Layout Primitives", package: "swift-layout-primitives")
-    }
     static var htmlRenderingCore: Self {
         .product(name: "HTML Rendering Core", package: "swift-html-render")
     }
     static var htmlRendering: Self {
         .product(name: "HTML Rendering", package: "swift-html-render")
-    }
-    static var sharedPrimitive: Self {
-        .product(name: "Ownership Shared Primitive", package: "swift-ownership-shared-primitives")
-    }
-    static var hashIndexedPrimitive: Self {
-        .product(name: "Hash Indexed Primitive", package: "swift-hash-table-primitives")
-    }
-    static var hashPrimitives: Self {
-        .product(name: "Hash Primitives", package: "swift-hash-primitives")
-    }
-    static var columnPrimitives: Self {
-        .product(name: "Column Primitives", package: "swift-column-primitives")
-    }
-    static var bufferLinearPrimitive: Self {
-        .product(name: "Buffer Linear Primitive", package: "swift-buffer-linear-primitives")
     }
 }
 
@@ -57,13 +39,6 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/swift-foundations/swift-html-render.git", branch: "main"),
         .package(url: "https://github.com/swift-standards/swift-css-standard.git", branch: "main"),
-        .package(url: "https://github.com/swift-primitives/swift-layout-primitives.git", branch: "main"),
-        .package(url: "https://github.com/swift-primitives/swift-dictionary-ordered-primitives.git", branch: "main"),
-        .package(url: "https://github.com/swift-primitives/swift-ownership-shared-primitives.git", branch: "main"),
-        .package(url: "https://github.com/swift-primitives/swift-hash-table-primitives.git", branch: "main"),
-        .package(url: "https://github.com/swift-primitives/swift-hash-primitives.git", branch: "main"),
-        .package(url: "https://github.com/swift-primitives/swift-column-primitives.git", branch: "main"),
-        .package(url: "https://github.com/swift-primitives/swift-buffer-linear-primitives.git", branch: "main"),
     ],
     targets: [
         .target(
@@ -71,13 +46,6 @@ let package = Package(
             dependencies: [
                 .htmlRendering,
                 .cssStandard,
-                .layout,
-                .product(name: "Dictionary Ordered Primitives", package: "swift-dictionary-ordered-primitives"),
-                .sharedPrimitive,
-                .hashIndexedPrimitive,
-                .hashPrimitives,
-                .columnPrimitives,
-                .bufferLinearPrimitive,
             ]
         ),
         .target(
