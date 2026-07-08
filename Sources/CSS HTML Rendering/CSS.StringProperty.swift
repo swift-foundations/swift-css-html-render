@@ -19,8 +19,6 @@ public import W3C_CSS_Shared
 /// - Note: Prefer using typed properties when available for better type safety.
 ///   This type is intended for dynamic or uncommon CSS properties.
 public struct StringProperty: W3C_CSS_Shared.Property {
-    public static var property: String { "" }
-
     public let name: String
     public let value: String
 
@@ -29,6 +27,10 @@ public struct StringProperty: W3C_CSS_Shared.Property {
         self.name = name
         self.value = value
     }
+}
+
+extension StringProperty {
+    public static var property: String { "" }
 
     @inlinable
     public static func global(_ global: Global) -> StringProperty {

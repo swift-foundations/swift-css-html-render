@@ -181,7 +181,7 @@ extension HTML.CSS {
     /// button.css.hover { $0.backgroundColor(.blue) }  // Uses :hover context
     /// ```
     @inlinable
-    func styled<P: W3C_CSS_Shared.Property>(_ property: P?) -> HTML.CSS<HTML.Styled<Base, P>> {
+    package func styled<P: W3C_CSS_Shared.Property>(_ property: P?) -> HTML.CSS<HTML.Styled<Base, P>> {
         HTML.CSS<HTML.Styled<Base, P>>(base: base.inlineStyle(property))
     }
 
