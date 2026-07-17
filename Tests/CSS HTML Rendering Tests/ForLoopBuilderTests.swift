@@ -13,7 +13,7 @@ import Testing
 // MARK: - Test Suite
 
 @Suite
-struct ForLoopBuilderTests {
+struct `For Loop Builder Tests` {
 
     // MARK: - Experiment 1: Basic for-loop in body
 
