@@ -36,9 +36,9 @@ extension HTML.CSS {
         @HTML.Builder _ content: (HTML.CSS<Base>) -> Result
     ) -> HTML.CSS<Result> {
         let atRule = media.map { HTML.AtRule.Media($0) }
-        let newContext = HTML.Element.Style.Context.current.merging(with: .init(atRule: atRule))
+        let newContext = HTML.Style.Rule.Context.current.merging(with: .init(atRule: atRule))
         return HTML.CSS<Result>(
-            base: HTML.Element.Style.Context.$current.withValue(newContext) { content(self) }
+            base: HTML.Style.Rule.Context.$current.withValue(newContext) { content(self) }
         )
     }
 
@@ -133,9 +133,9 @@ extension HTML.CSS {
         _ pseudo: HTML.Pseudo?,
         @HTML.Builder _ content: (HTML.CSS<Base>) -> Result
     ) -> HTML.CSS<Result> {
-        let newContext = HTML.Element.Style.Context.current.merging(with: .init(pseudo: pseudo))
+        let newContext = HTML.Style.Rule.Context.current.merging(with: .init(pseudo: pseudo))
         return HTML.CSS<Result>(
-            base: HTML.Element.Style.Context.$current.withValue(newContext) { content(self) }
+            base: HTML.Style.Rule.Context.$current.withValue(newContext) { content(self) }
         )
     }
 
@@ -295,9 +295,9 @@ extension HTML.CSS {
         _ selector: HTML.Selector?,
         @HTML.Builder _ content: (HTML.CSS<Base>) -> Result
     ) -> HTML.CSS<Result> {
-        let newContext = HTML.Element.Style.Context.current.merging(with: .init(selector: selector))
+        let newContext = HTML.Style.Rule.Context.current.merging(with: .init(selector: selector))
         return HTML.CSS<Result>(
-            base: HTML.Element.Style.Context.$current.withValue(newContext) { content(self) }
+            base: HTML.Style.Rule.Context.$current.withValue(newContext) { content(self) }
         )
     }
 }

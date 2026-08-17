@@ -174,7 +174,7 @@ extension HTML.CSS {
     /// Applies an inline style and returns a CSS wrapper with the styled content.
     ///
     /// The at-rule, selector, and pseudo values are read from the current
-    /// `HTML.Element.Style.Context` TaskLocal, allowing context-based styling:
+    /// `HTML.Style.Rule.Context` TaskLocal, allowing context-based styling:
     ///
     /// ```swift
     /// div.css.dark { $0.color(.white) }  // Uses .dark context
@@ -195,7 +195,7 @@ extension HTML.CSS {
     /// Prefer typed properties when possible for better type safety.
     ///
     /// The at-rule, selector, and pseudo values are read from the current
-    /// `HTML.Element.Style.Context` TaskLocal.
+    /// `HTML.Style.Rule.Context` TaskLocal.
     ///
     /// ```swift
     /// div.css

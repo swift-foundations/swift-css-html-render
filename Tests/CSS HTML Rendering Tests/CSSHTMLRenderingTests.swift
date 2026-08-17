@@ -21,7 +21,7 @@ struct `Unit Tests` {
         func `css accessor wraps base view in HTML.CSS`() {
             let element = tag("div")
             let wrapped = element.css
-            #expect(type(of: wrapped) == HTML.CSS<HTML.Element.Tag<HTML.Empty>>.self)
+            #expect(type(of: wrapped) == HTML.CSS<HTML.Tag.Element<HTML.Empty>>.self)
         }
 
         @Test
