@@ -1,4 +1,4 @@
-// swift-tools-version: 6.3.3
+// swift-tools-version: 6.4
 
 import PackageDescription
 
@@ -26,15 +26,18 @@ extension Target.Dependency {
 let package = Package(
     name: "swift-css-html-render",
     platforms: [
-        .macOS("27"),
-        .iOS("27"),
-        .tvOS("27"),
-        .watchOS("27"),
-        .visionOS("27"),
+        .macOS(.v27),
+        .iOS(.v27),
+        .tvOS(.v27),
+        .watchOS(.v27),
+        .visionOS(.v27),
     ],
     products: [
         .library(name: .cssHTMLRendering, targets: [.cssHTMLRendering]),
-        .library(name: "CSS HTML Rendering Test Support", targets: ["CSS HTML Rendering Test Support"]),
+        .library(
+            name: "CSS HTML Rendering Test Support",
+            targets: ["CSS HTML Rendering Test Support"]
+        ),
     ],
     dependencies: [
         .package(url: "https://github.com/swift-foundations/swift-html-render.git", branch: "main"),
@@ -60,7 +63,7 @@ let package = Package(
         .testTarget(
             name: .cssHTMLRendering.tests,
             dependencies: [
-                "CSS HTML Rendering Test Support",
+                "CSS HTML Rendering Test Support"
             ],
             path: "Tests/CSS HTML Rendering Tests"
         ),
