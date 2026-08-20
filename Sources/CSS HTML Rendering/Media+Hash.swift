@@ -7,7 +7,5 @@
 //
 
 public import CSS_Standard
-public import HTML_Rendering
 
-extension W3C_CSS_MediaQueries.Media: @retroactive Equation.`Protocol` {}
 extension W3C_CSS_MediaQueries.Media: @retroactive Hash.`Protocol` {}
