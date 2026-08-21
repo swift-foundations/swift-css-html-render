@@ -1,21 +1,10 @@
-//
-//  ForLoopBuilderTests.swift
-//  swift-css-html-rendering
-//
-//  Experiment: for-loop inside @HTML.Builder in production packages.
-//
-
 import CSS_HTML_Rendering_Test_Support
 import Testing
 
 @testable import CSS_HTML_Rendering
 
-// MARK: - Test Suite
-
 @Suite
 struct `For Loop Builder Tests` {
-
-    // MARK: - Experiment 1: Basic for-loop in body
 
     @Test
     func `for loop over array in body`() throws {
@@ -34,8 +23,6 @@ struct `For Loop Builder Tests` {
         #expect(rendered.contains("b"))
         #expect(rendered.contains("c"))
     }
-
-    // MARK: - Experiment 2: For-loop with siblings (_Tuple context)
 
     @Test
     func `for loop with siblings in tuple`() throws {
@@ -57,8 +44,6 @@ struct `For Loop Builder Tests` {
         #expect(rendered.contains("footer"))
     }
 
-    // MARK: - Experiment 3: For-loop inside container element
-
     @Test
     func `for loop inside container element`() throws {
         struct ForLoopInContainer: HTML.View {
@@ -77,8 +62,6 @@ struct `For Loop Builder Tests` {
         #expect(rendered.contains("<div"))
         #expect(rendered.contains("<li"))
     }
-
-    // MARK: - Experiment 4: For-loop with conditional inside
 
     @Test
     func `for loop with conditional inside`() throws {
@@ -101,8 +84,6 @@ struct `For Loop Builder Tests` {
         #expect(rendered.contains("yes"))
         #expect(rendered.contains("no"))
     }
-
-    // MARK: - Experiment 5: Opaque sub-property with if-let used in builder
 
     @Test
     func `opaque sub-property with if-let in builder`() throws {
@@ -133,8 +114,6 @@ struct `For Loop Builder Tests` {
         #expect(rendered.contains("after"))
     }
 
-    // MARK: - Experiment 6: For-loop + opaque sub-property combined
-
     @Test
     func `for loop combined with opaque sub-property`() throws {
         struct Combined: HTML.View {
@@ -161,8 +140,6 @@ struct `For Loop Builder Tests` {
         #expect(rendered.contains("<span"))
         #expect(rendered.contains("total"))
     }
-
-    // MARK: - Experiment 7: For-loop with CSS styling
 
     @Test
     func `for loop with css styling`() throws {

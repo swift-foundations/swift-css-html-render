@@ -1,15 +1,8 @@
-//
-//  CSS+ContextModifiers Tests.swift
-//  swift-css-html-rendering
-//
-
 import CSS_HTML_Rendering_Test_Support
 
 extension `Snapshot Tests` {
     @Suite
     struct `ContextModifiers Tests` {
-
-        // MARK: - Dark Mode
 
         @Test
         func `HTML element renders with dark mode context`() throws {
@@ -22,8 +15,6 @@ extension `Snapshot Tests` {
             }
         }
 
-        // MARK: - Hover
-
         @Test
         func `HTML element renders with hover pseudo-class`() throws {
             snapshot(
@@ -34,8 +25,6 @@ extension `Snapshot Tests` {
                 }
             }
         }
-
-        // MARK: - Print
 
         @Test
         func `HTML element renders with print media query`() throws {
@@ -48,8 +37,6 @@ extension `Snapshot Tests` {
             }
         }
 
-        // MARK: - Selector
-
         @Test
         func `HTML element renders with custom selector`() throws {
             snapshot(
@@ -60,8 +47,6 @@ extension `Snapshot Tests` {
                 }
             }
         }
-
-        // MARK: - Chaining with Context
 
         @Test
         func `HTML element renders with property then dark mode`() throws {

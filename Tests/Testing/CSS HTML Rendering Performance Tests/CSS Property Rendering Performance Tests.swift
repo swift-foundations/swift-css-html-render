@@ -1,18 +1,8 @@
-//
-//  CSS Property Rendering Performance Tests.swift
-//  swift-css-html-rendering
-//
-//  Performance tests for CSS HTML rendering property application and chaining.
-//  Measures the cost of applying CSS properties through the HTML.CSS wrapper.
-//
-
 import CSS_HTML_Rendering_Test_Support
 
 extension `Performance Tests` {
     @Suite
     struct `CSS Property Rendering` {
-
-        // MARK: - Single Property Application
 
         @Test(.timed(threshold: .seconds(2)))
         func `single property - backgroundColor rendering 1K times`() throws {
@@ -49,8 +39,6 @@ extension `Performance Tests` {
                 )
             }
         }
-
-        // MARK: - Multiple Properties (Chaining)
 
         @Test(.timed(threshold: .seconds(2)))
         func `multiple properties - 5 properties 1K times`() throws {
@@ -89,8 +77,6 @@ extension `Performance Tests` {
             }
         }
 
-        // MARK: - Many Elements
-
         @Test(.timed(threshold: .seconds(2)))
         func `many elements - 50 styled divs 50 times`() throws {
             for _ in 0..<50 {
@@ -109,8 +95,6 @@ extension `Performance Tests` {
             }
         }
 
-        // MARK: - Flexbox Layout Pattern
-
         @Test(.timed(threshold: .seconds(2)))
         func `flexbox layout - full flex container 500 times`() throws {
             for _ in 0..<500 {
@@ -126,8 +110,6 @@ extension `Performance Tests` {
                 )
             }
         }
-
-        // MARK: - Real-World Scenario
 
         @Test(.timed(threshold: .seconds(2)))
         func `real-world - card component 500 times`() throws {
@@ -156,8 +138,6 @@ extension `Performance Tests` {
                 )
             }
         }
-
-        // MARK: - Baseline (No Styling)
 
         @Test(.timed(threshold: .seconds(2)))
         func `baseline - unstyled elements 1K times`() throws {

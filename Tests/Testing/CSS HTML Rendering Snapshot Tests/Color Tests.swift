@@ -1,8 +1,3 @@
-//
-//  Color Tests.swift
-//  swift-css-html-rendering
-//
-
 import CSS_HTML_Rendering_Test_Support
 
 extension `Snapshot Tests` {

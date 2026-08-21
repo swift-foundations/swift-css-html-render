@@ -1,19 +1,10 @@
-//
-//  CSSHTMLRenderingTests.swift
-//  swift-css-html-rendering
-//
-
 import CSS_HTML_Rendering_Test_Support
 import Testing
 
 @testable import CSS_HTML_Rendering
 
-// MARK: - Unit Tests
-
 @Suite
 struct `Unit Tests` {
-
-    // MARK: - CSS Accessor
 
     @Suite
     struct `CSS Accessor` {
@@ -33,8 +24,6 @@ struct `Unit Tests` {
             #expect(baseHTML == originalHTML)
         }
     }
-
-    // MARK: - Property Application
 
     @Suite
     struct `Property Application` {
@@ -102,8 +91,6 @@ struct `Unit Tests` {
         }
     }
 
-    // MARK: - Property Chaining
-
     @Suite
     struct `Property Chaining` {
         @Test
@@ -144,13 +131,10 @@ struct `Unit Tests` {
                 .backgroundColor(.color(.named(.red)))
                 .color(.named(.white))
 
-            // Should compile: HTML.CSS conforms to HTML.View
             let html = try String(HTML.Document { styled })
             #expect(!html.isEmpty)
         }
     }
-
-    // MARK: - Nil Handling
 
     @Suite
     struct `Nil Handling` {
@@ -171,8 +155,6 @@ struct `Unit Tests` {
             #expect(html.contains("background-color"))
         }
     }
-
-    // MARK: - String-Based Inline Style
 
     @Suite
     struct `String Based Inline Style` {
@@ -200,8 +182,6 @@ struct `Unit Tests` {
         }
     }
 
-    // MARK: - HTML.CSS View Conformance
-
     @Suite
     struct `View Conformance` {
         @Test
@@ -215,13 +195,11 @@ struct `Unit Tests` {
         func `HTML.CSS is Sendable when base is Sendable`() {
             let element = tag("div")
             let css = element.css
-            // Compiles without warnings: conditional Sendable conformance
+
             let _: any Sendable = css
         }
     }
 }
-
-// MARK: - Edge Case Tests
 
 @Suite
 struct `Edge Case Tests` {
@@ -278,8 +256,6 @@ struct `Edge Case Tests` {
         #expect(prop.description == "inherit")
     }
 }
-
-// MARK: - Integration Tests
 
 @Suite
 struct `Integration Tests` {
@@ -408,8 +384,6 @@ struct `Integration Tests` {
         #expect(html.contains("color"))
     }
 }
-
-// MARK: - Performance Tests
 
 @Suite
 struct `Performance Tests` {
